@@ -1,7 +1,7 @@
 pipeline {
     agent {label "Slave-Docker"} 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('mshashank')
+    DOCKERHUB_CREDENTIALS = credentials('docker-hub-mshashank')
     }
     stages { 
         stage('SCM Checkout') {
@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t mshashank/nodeapp:tag number 2 .'
+                sh 'docker build -t mshashank/nodeapp:$BUILD_NUMBER.'
             }
         }
         stage('login to dockerhub') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push mshashank/nodeapp:tag number 2'
+                sh 'docker push mshashank/nodeapp:$BUILD_NUMBER'
             }
         }
 }
