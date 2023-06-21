@@ -1,7 +1,7 @@
 pipeline {
     agent {label "Slave-Docker"} 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker-hub-mshashank')
+    DOCKERHUB_CREDENTIALS = credentials('docker-hub-shashank')
     }
     stages { 
         stage('SCM Checkout') {
